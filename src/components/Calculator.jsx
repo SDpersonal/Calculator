@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import '../style/Calculator.css';
 
 const Calculator = () => {
@@ -7,84 +7,76 @@ const Calculator = () => {
 
 const [err,setErr] = useState(true)
 
-  const handleClick = (e) => {
-    const value = e.target ? e.target.value : e;
-    const filterInput = (input) => {
-      return input.replace(/(^|[^\d.])0+(\d+)/g, '$1$2').replace(/÷/g, '/').replace(/×/g, '*');
-    };
+const filterInput = (input) => {
+  return input.replace(/(^|[^\d.])0+(\d+)/g, '$1$2').replace(/÷/g, '/').replace(/×/g, '*');
+};
 
-    switch (value) {
-      case 'AC':
-        setInput('0');
+const handleClick = useCallback((e) => {
+  const value = e.target ? e.target.value : e;
 
-        if (input === 'Error' ) {
-          setErr(true)
-        }
-        break;
-      case 'DEL':
-        setInput((prevInput) => (prevInput.length > 0 ? prevInput.slice(0, -1) : '0'));
-        break;
-      case '=':
-        try {
-          const FilterValue = filterInput(input);
-          setInput(eval(FilterValue).toString());
-        } catch {
-          setInput('Error');
-        }
-        break;
-      default:
-        if (input.length > 0) {
-          setInput((prevInput) => (prevInput === '0' ? value : prevInput + value));
-        } else {
-          setInput(value);
-        }
-        break;
-    }
+  switch (value) {
+    case 'AC':
+      setInput('0');
+      break;
+    case 'DEL':
+      setInput((prevInput) => (prevInput.length > 0 ? prevInput.slice(0, -1) : '0'));
+      break;
+    case '=':
+      try {
+        const filteredInput = filterInput(input);
+        setInput(eval(filteredInput).toString());
+      } catch {
+        setInput('Error');
+      }
+      break;
+    default:
+      setInput((prevInput) => (prevInput === '0' ? value : prevInput + value));
+      break;
+  }
+}, [input, setInput]);
+
+const handleKeyPress = useCallback((event) => {
+  const keyMap = {
+    '0': '0',
+    '1': '1',
+    '2': '2',
+    '3': '3',
+    '4': '4',
+    '5': '5',
+    '6': '6',
+    '7': '7',
+    '8': '8',
+    '9': '9',
+    '.': '.',
+    '/': '÷',
+    '*': '×',
+    '-': '-',
+    '+': '+',
+    'Enter': '=',
+    'Backspace': 'DEL',
+    'Escape': 'AC',
+    '%': '%'
   };
 
-
-//keyboard Function
+  if (input === 'Error' && event.key === 'Escape') {
+    handleClick('AC');
+  }else{
+    const value = keyMap[event.key];
+    // console.log(value);
+    if (value) {
+      const buttonElement = document.querySelector(`button[value="${value}"]`);
+        buttonElement.classList.add('key');
+        setTimeout(() => {
+          buttonElement.classList.remove('key'); 
+        }, 150);
+      handleClick(value);
+    }
+  }
+ 
+}, [handleClick,input]);
   
-  const handleKeyPress = (event) => {
-    const keyMap = {
-      '0': '0',
-      '1': '1',
-      '2': '2',
-      '3': '3',
-      '4': '4',
-      '5': '5',
-      '6': '6',
-      '7': '7',
-      '8': '8',
-      '9': '9',
-      '.': '.',
-      '/': '÷',
-      '*': '×',
-      '-': '-',
-      '+': '+',
-      'Enter': '=',
-      'Backspace': 'DEL',
-      'Escape': 'AC',
-      '%': '%'
-    };
 
-    if (input === 'Error') {
-      const value = keyMap[event.key];
-      // console.log(value);
-      if (value === 'AC') {
-        handleClick(value);
-      }
-    }else{
-      const value = keyMap[event.key];
-      // console.log(value);
-      if (value) {
-        handleClick(value);
-      }
-    }
-   
-  };
-
-    useEffect(() => {
+  useEffect(() => {
     if (input === '') {
       setInput('0');
     }
@@ -94,7 +86,7 @@ const [err,setErr] = useState(true)
     }
 
     const inputElement = document.querySelector('input');
-
+  
     if (input.length > 12) {
       inputElement.classList.add('long-input');
     }else{
@@ -110,17 +102,20 @@ const [err,setErr] = useState(true)
     if (input.length > 22) {
       setInput('Error')
     }
-   
-    window.addEventListener('keydown', handleKeyPress);
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [input]);
+  
+      window.addEventListener('keydown', handleKeyPress);
+      return () => {
+        window.removeEventListener('keydown', handleKeyPress);
+      };
+  
+  }, [input,handleKeyPress]);
+
+  const gitlink = "https://github.com/SDpersonal/Basic_Calculator"
 
   return (
     <div>
       <div className="controls">
-        <a href="https://github.com/SDpersonal/Analog_clock_react" target="blank">
+        <a href={gitlink} target="blank">
           <img src="assets/img/Github.png" alt="icon" height="40px" />
           &nbsp;CoderXSubham
         </a>
