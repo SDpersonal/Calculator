@@ -12,6 +12,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## Technologies Used
+
+-> React Js
+
+-> Css
+
+-> Html
+
+-> Advance Js
+
 ## How to calculations are working in this project.
 
 -> i use math.js library in this project
