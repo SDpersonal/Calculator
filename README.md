@@ -14,6 +14,6 @@ You may also see any lint errors in the console.
 
 ## How to calculations are working in this project.
 
--i use math.js library in this project
+-> i use math.js library in this project
 
--if you want to know more about math.js (https://mathjs.org/docs/getting_started.html)
+-> math.evaluate()
