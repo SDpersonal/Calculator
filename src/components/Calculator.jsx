@@ -25,7 +25,7 @@ const handleClick = useCallback((e) => {
     case '=':
       try {
         const filteredInput = filterInput(input);
-        const result = math.evaluate(filteredInput); // Assuming you use math.js
+        const result = math.evaluate(filteredInput);
         setInput(result.toString());
       } catch {
         setInput('Error');
@@ -127,7 +127,6 @@ const handleKeyPress = useCallback((event) => {
       <div className='cal_body'>
        
         <input type='text' placeholder={input} readOnly/>
-        <p className='text'>22-Digit Calculator</p>
         <div>
        
           <button className="btn" onClick={handleClick} value='AC'>AC</button>
