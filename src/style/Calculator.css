@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 .controls{
     position: absolute;
     top: 5%;
@@ -7,8 +7,13 @@
     width: 190px;
 }
 
+.rem{
+    color: red;
+}
+
 .controls a{
     text-decoration: none;
+    font-family: "Kanit", sans-serif;
     display: flex;
     color: #fff;
     justify-content: center;
@@ -27,22 +32,40 @@
 }
 
 input{
+    font-family: "Kanit", sans-serif;
     height: 80px;
-    width: 324px;
-    padding: 14px;
+    width: 342px;
+    padding: 5px;
     border: none;
-    margin: 10px;
-    background: #272626;;
+    margin: 23px;
+    background: #272626;
     box-shadow: 0px 0px 4px 0px rgb(99 99 99);
     font-size: 50px;
     text-align: end;
+}
+
+.long-input{
+    font-size: 40px;
+}
+
+.long-inputs{
+    font-size: 28px;
 }
 
 input::placeholder{
     color: #ffffff;
 }
 
+.text {
+    font-family: "Kanit", sans-serif;
+    color: #fff;
+    text-align: center;
+    margin: 2px;
+    font-size: 15px;
+}
+
 button{
+font-family: "Kanit", sans-serif;
  border: none;
  width: 60px;
  height: 60px;
@@ -51,7 +74,7 @@ button{
  color: #fff;
  font-size: 20px;
  box-shadow: -2px -1px 11px 1px rgb(104 104 104 / 50%);
- margin: 18px;
+ margin: 20px;
  cursor: pointer;
 }
 
@@ -60,13 +83,36 @@ button:active{
     box-shadow: 0px -2px 11px 1px rgb(57 54 54 / 50%);
 }
 
-@media screen and (min-height: 200px) and (max-height: 420px) {
+@media screen and (min-device-width: 200px) and (max-device-width: 991px) {
+    .rem{
+        display: none;
+     }
+}
+@media screen and (min-device-width: 200px) and (max-device-width: 430px) {
     .cal_body{
-        height: 250px;
-        width: 250px;
+        height: 480px;
+        width: 280px;
+        margin-top: 25%;
     }
     input{
-        height: 80px;
-        width: 32px;
+        width: 224px;
+        height: 50px;
+        font-size: 30px;
     }
+    .long-input{
+        font-size: 20px;
+    }
+    
+    .long-inputs{
+        font-size: 18px;
+    }
+
+    button{
+        height: 50px;
+        width: 50px;
+        font-size: 20px;
+        box-shadow: -2px -1px 6px 1px rgb(104 104 104 / 50%);
+    margin: 10px;
+    }
+    
 }
