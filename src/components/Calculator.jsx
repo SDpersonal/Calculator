@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import '../style/Calculator.css';
+import * as math from 'mathjs';
 
 const Calculator = () => {
   const [input, setInput] = useState('');
@@ -24,7 +25,8 @@ const handleClick = useCallback((e) => {
     case '=':
       try {
         const filteredInput = filterInput(input);
-        setInput(eval(filteredInput).toString());
+        const result = math.evaluate(filteredInput); // Assuming you use math.js
+        setInput(result.toString());
       } catch {
         setInput('Error');
       }
