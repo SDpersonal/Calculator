@@ -17,6 +17,9 @@ const handleClick = useCallback((e) => {
 
   switch (value) {
     case 'AC':
+      if (input === 'Error') {
+        setErr(true)
+      }
       setInput('0');
       break;
     case 'DEL':
@@ -128,6 +131,7 @@ const handleKeyPress = useCallback((event) => {
         <p className='rem_sub'>Esc = AC</p>
         <p className='rem_sub'>Backspace = DEL</p>
         <p className='rem_sub'>Enter = result(=) </p>
+        <p className='rem_sub'>Max digit length = 22 </p>
       </div>
       
       <div className='cal_body'>
