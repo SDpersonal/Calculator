@@ -4,11 +4,18 @@
     top: 5%;
     left: 2%;
     height: 120px;
-    width: 190px;
+    width: 200px;
 }
 
 .rem{
+    font-family: "Kanit", sans-serif;
     color: red;
+    font-size: 18px;
+}
+
+.rem_sub{
+    color: #fff;
+    font-family: "Kanit", sans-serif;
 }
 
 .controls a{
@@ -56,13 +63,13 @@ input::placeholder{
     color: #ffffff;
 }
 
-.text {
+/* .text {
     font-family: "Kanit", sans-serif;
     color: #fff;
     text-align: center;
     margin: 2px;
     font-size: 15px;
-}
+} */
 
 button{
 font-family: "Kanit", sans-serif;
@@ -90,6 +97,9 @@ button:active{
 
 @media screen and (min-device-width: 200px) and (max-device-width: 991px) {
     .rem{
+        display: none;
+     }
+     .rem_sub{
         display: none;
      }
 }

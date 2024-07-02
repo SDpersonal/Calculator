@@ -17,6 +17,9 @@ const handleClick = useCallback((e) => {
 
   switch (value) {
     case 'AC':
+      if (input === 'Error') {
+        setErr(true)
+      }
       setInput('0');
       break;
     case 'DEL':
@@ -122,8 +125,15 @@ const handleKeyPress = useCallback((event) => {
           &nbsp;CoderXSubham
         </a>
         {/* <a href="" target="_blank"><img src="./assets//instagram.png" alt="icon" height="40px"/>&nbsp;/CoderXSubham</a>  */}
+
+        <br/>
+        <h5 className='rem'>You can access it from keyboard</h5>
+        <p className='rem_sub'>Esc = AC</p>
+        <p className='rem_sub'>Backspace = DEL</p>
+        <p className='rem_sub'>Enter = result(=) </p>
+        <p className='rem_sub'>Max digit length = 22 </p>
       </div>
-      <h5 className='rem'>You can access it from keyboard</h5>
+      
       <div className='cal_body'>
        
         <input type='text' placeholder={input} readOnly/>
